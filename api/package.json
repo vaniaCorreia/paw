@@ -4,12 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devStart" : "nodemon server.js"
+    "devStart": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "joi": "^17.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.6.1",
     "mongoose": "^5.10.3"
   },
   "devDependencies": {

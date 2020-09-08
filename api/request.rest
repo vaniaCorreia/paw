@@ -1,0 +1,11 @@
+POST http://localhost:3000/utilizadores/registar
+Content-Type: application/json
+
+{
+    "nome": "Vânia Correia",
+    "email": "admin@admin.com",
+    "password": "admin37",
+    "nif": "123456789",
+    "contacto": "917777777",
+    "tipo": "Administrador"
+}
