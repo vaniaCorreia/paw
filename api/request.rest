@@ -9,3 +9,50 @@ Content-Type: application/json
     "contacto": "917777777",
     "tipo": "Administrador"
 }
+
+###
+
+POST http://localhost:3000/utilizadores/registar
+Content-Type: application/json
+
+{
+    "nome": "Utilizador1",
+    "email": "user@user.com",
+    "password": "admin37",
+    "nif": "123456788",
+    "contacto": "918888888"
+}
+
+###
+
+POST http://localhost:3000/utilizadores/registar
+Content-Type: application/json
+
+{
+    "nome": "Utilizador2",
+    "email": "user2@user.com",
+    "password": "admin37",
+    "nif": "123456799",
+    "contacto": "918888899",
+     "tipo": "Administrador"
+}
+
+###
+
+POST http://localhost:3000/utilizadores/autenticacao
+Content-Type: application/json
+
+{
+    "email": "admin@admin.com",
+    "password": "admin37"
+}
+
+###
+
+POST http://localhost:3000/utilizadores/autenticacao
+Content-Type: application/json
+
+{
+    "email": "user2@user.com",
+    "password": "admin37"
+}

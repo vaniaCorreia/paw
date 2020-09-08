@@ -30,7 +30,7 @@ const utilizadorSchema = new mongoose.Schema({
     tipo:{
         type: String,
         required: true,
-        default: 'Utilizador'
+        //default: 'Utilizador'
     }
 });
 
