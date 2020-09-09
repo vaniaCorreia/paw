@@ -10,7 +10,9 @@ module.exports = {
     autenticar,
     getAll,
     getById, 
-    atualizar
+    atualizar,
+    delete: _delete,
+    create
 };
 
 async function registar(params) {
@@ -93,6 +95,27 @@ async function atualizar(id, params){
     }
 
     Object.assign(utilizador, params);
+    await utilizador.save();
+
+    return infoUtilizador(utilizador);
+}
+
+async function _delete(id){
+    const utilizador = await getUtilizador(id);
+    await utilizador.remove();
+}
+
+async function create(params){
+    //validar
+    if(await Utilizador.findOne({ email: params.email})){
+        throw 'Email "' + params.email + '"já existe';
+    }
+
+    const utilizador = new Utilizador(params);
+
+    const salt = await bcrypt.genSalt(10);
+    utilizador.password = await bcrypt.hash(params.password, salt);
+
     await utilizador.save();
 
     return infoUtilizador(utilizador);

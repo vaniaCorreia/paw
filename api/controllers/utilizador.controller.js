@@ -75,4 +75,32 @@ utilizadorC.atualizar = function(req, res, next) {
         .then(utilizador => res.json(utilizador))
         .catch(next);
 }
+
+utilizadorC.eliminar = function (req, res, next) {
+    /* if(req.params.id !== req.user.id && req.user.tipo !== tipo.Administrador){
+        return res.status(401).json({ message: 'Unauthorized' });
+    }*/
+    utilizadorS.delete(req.params.id)
+        .then(() => res.json({message: 'O utilizador foi eliminado com sucesso'}))
+        .catch(next);
+}
+
+utilizadorC.validacaoCreate = function(req, res, next) {
+    const schema = Joi.object({
+        nome: Joi.string().required(),
+        email: Joi.string().email().required(),
+        password: Joi.string().min(6).required(),
+        nif: Joi.number().min(9).required(),
+        contacto: Joi.number().min(9).required(),
+        tipo: Joi.string().valid(tipo.Administrador, tipo.Utilizador).required  
+    });
+    validacao(req, next, schema);
+}
+
+utilizadorC.criar = function(req, res, next){
+    utilizadorS.create(req.body)
+        .then(utiliador => res.json(utilizador))
+        .catch(next);
+}
+
 module.exports = utilizadorC;

@@ -39,7 +39,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3000/utilizadores/autenticacao
+POST http://localhost:3003/utilizadores/autenticacao
 Content-Type: application/json
 
 {
@@ -53,6 +53,6 @@ POST http://localhost:3000/utilizadores/autenticacao
 Content-Type: application/json
 
 {
-    "email": "user2@user.com",
+    "email": "user@user.com",
     "password": "admin37"
 }

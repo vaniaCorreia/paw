@@ -1,6 +1,6 @@
 const jwt = require('express-jwt');
 const {secret} = require('.././config.json');
-//const database = require('.././helper/database');
+const database = require('.././helper/database');
 
 function autorizacao(tipo = []){
     if(typeof tipo === 'string'){
@@ -12,11 +12,12 @@ function autorizacao(tipo = []){
         jwt({secret, algorithms:['HS256']}),
 
         //autorização baseada no tipo de utilizador
-        (req, res, next) =>{
-            if(tipo.length && !tipo.includes(req.user.tipo)){
+        async(req, res, next) =>{
+            const utilizador = await database.Utilizadores.findById(req.user.id);
+            if(!utilizador || (tipo.length && !tipo.includes(utilizadortipo))){
                 return res.status(401).json({ message: 'Unauthorized' });
             }
-            
+            req.user.tipo = utilizador.tipo;
             next();
         }
     ];
