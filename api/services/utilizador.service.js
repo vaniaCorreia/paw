@@ -7,7 +7,10 @@ const Utilizador = database.Utilizadores;
 
 module.exports = {
     registar,
-    autenticar
+    autenticar,
+    getAll,
+    getById, 
+    atualizar
 };
 
 async function registar(params) {
@@ -53,7 +56,7 @@ async function autenticar({email, password}){
     }
 
     //autenticação bem sucedida vai-se criar um token
-    const token = jwt.sign({sub: utilizador.id}, config.SECRET_TOKEN, { expiresIn: '24h' });
+    const token = jwt.sign({sub: utilizador.id}, config.secret, { expiresIn: '24h' });
 
     //retorna informação do utilizador e o token
     return {
@@ -62,7 +65,48 @@ async function autenticar({email, password}){
     };
 }
 
+async function getAll(){
+    const utilizador = await Utilizador.find();
+    return utilizador.map(x => infoUtilizador(x));
+
+}
+
+async function getById(id){
+    const utilizador = await getUtilizador(id);
+    return infoUtilizador(utilizador);
+}
+
+async function atualizar(id, params){
+    const utilizador = await getUtilizador(id);
+
+    if(params.email && utilizador.email !== params.email && await Utilizador.findOne({email: params.email})){
+        throw 'Email "' + params.email + '"já existe';
+    }
+
+    if(params.nif && utilizador.nif !== params.nif && await Utilizador.findOne({email: params.nif})){
+        throw 'Este nif "' + params.nif + '"já existe';
+    }
+
+    if(params.password){
+        const salt = await bcrypt.genSalt(10);
+        params.password = await bcrypt.hash(params.password, salt);
+    }
+
+    Object.assign(utilizador, params);
+    await utilizador.save();
+
+    return infoUtilizador(utilizador);
+}
+
+//funções auxiliares
 function infoUtilizador(utilizador){
     const {id, nome, email, nif, contacto, tipo} = utilizador;
     return {id, nome, email, nif, contacto, tipo};
+}
+
+async function getUtilizador(id){
+    if(!database.isValidId(id)) throw 'Utilizador não foi encontrado';
+    const utilizador = await Utilizador.findById(id);
+    if(!utilizador) throw 'Utilizador não foi encontrado';
+    return utilizador;
 }

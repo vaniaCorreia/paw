@@ -1,5 +1,5 @@
 {
     "DATABASE_CONN" : "mongodb://localhost/reservas",
-    "SECRET_TOKEN" : "e213f6bb9b4577fafe4920bd0d94203dc150eefa453b560f7d6ac739705ef1ad5957a453ab000e6676e27b03ea8c685e5acb40486de8d2fb8f4126e8971729e4"
+    "secret" : "e213f6bb9b4577fafe4920bd0d94203dc150eefa453b560f7d6ac739705ef1ad5957a453ab000e6676e27b03ea8c685e5acb40486de8d2fb8f4126e8971729e4"
 }
 
