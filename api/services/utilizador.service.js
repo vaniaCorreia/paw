@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('../config.json');
 const database = require('.././helper/database');
-const tipo = require('.././helper/tipo');
+//const tipo = require('.././helper/tipo');
 const Utilizador = database.Utilizadores;
 
 module.exports = {
@@ -31,8 +31,8 @@ async function registar(params) {
     const utilizador = new Utilizador(params);
     
     //primeira conta a ser registada
-    const firstUser = (await Utilizador.countDocuments({}) === 0);
-    utilizador.tipo = firstUser ? tipo.Administrador : tipo.Utilizador;
+    /*const firstUser = (await Utilizador.countDocuments({}) === 0);
+    utilizador.tipo = firstUser ? tipo.Administrador : tipo.Utilizador;*/
     
     //hash à password
     const salt = await bcrypt.genSalt(10);

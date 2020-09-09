@@ -11,7 +11,8 @@ utilizadorC.validacaoRegisto = function(req, res, next) {
         email: Joi.string().email().required(),
         password: Joi.string().min(6).required(),
         nif: Joi.number().min(9).required(),
-        contacto: Joi.number().min(9).required()       
+        contacto: Joi.number().min(9).required(),
+        tipo: Joi.string().empty('')      
     });
     validacao(req, next, schema);
 }

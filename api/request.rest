@@ -30,16 +30,16 @@ Content-Type: application/json
 
 {
     "nome": "Utilizador2",
-    "email": "user2@user.com",
+    "email": "user22@user.com",
     "password": "admin37",
-    "nif": "123456799",
+    "nif": "123456998",
     "contacto": "918888899",
      "tipo": "Administrador"
 }
 
 ###
 
-POST http://localhost:3003/utilizadores/autenticacao
+POST http://localhost:3000/utilizadores/autenticacao
 Content-Type: application/json
 
 {
@@ -54,5 +54,37 @@ Content-Type: application/json
 
 {
     "email": "user@user.com",
+    "password": "admin37"
+}
+
+###
+POST http://localhost:3000/utilizadores/autenticacao
+Content-Type: application/json
+
+{
+    "email": "user22@user.com",
+    "password": "admin37"
+}
+
+###
+POST http://localhost:3000/utilizadores/registar
+Content-Type: application/json
+
+{
+    "nome": "Utilizador2",
+    "email": "admin22@user.com",
+    "password": "admin37",
+    "nif": "133456998",
+    "contacto": "918888899",
+    "tipo": "administrador"
+}
+
+
+###
+POST http://localhost:3000/utilizadores/autenticacao
+Content-Type: application/json
+
+{
+    "email": "admin22@user.com",
     "password": "admin37"
 }
